@@ -1,4 +1,27 @@
 /* ═══════════════════════════════════════════
+   THEME TOGGLE
+═══════════════════════════════════════════ */
+(function initTheme() {
+  const btn  = document.getElementById('themeToggle');
+  const icon = document.getElementById('themeIcon');
+  const html = document.documentElement;
+
+  function applyTheme(theme) {
+    html.setAttribute('data-theme', theme);
+    icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+  }
+
+  const saved = localStorage.getItem('portfolio-theme') || 'dark';
+  applyTheme(saved);
+
+  btn.addEventListener('click', () => {
+    const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+    localStorage.setItem('portfolio-theme', next);
+  });
+})();
+
+/* ═══════════════════════════════════════════
    PARTICLE CANVAS
 ═══════════════════════════════════════════ */
 (function initParticles() {
@@ -162,12 +185,11 @@
       if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
     });
     links.forEach(a => {
-      a.style.color = a.getAttribute('href') === '#' + current
-        ? 'var(--accent)'
-        : '';
+      a.classList.toggle('nav-active', a.getAttribute('href') === '#' + current);
     });
   }
   window.addEventListener('scroll', updateActive, { passive: true });
+  updateActive();
 })();
 
 /* ═══════════════════════════════════════════
