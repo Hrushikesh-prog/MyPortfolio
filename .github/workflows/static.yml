@@ -1,29 +1,88 @@
-# Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+name: CI/CD — Validate & Deploy
 
 on:
-  # Runs on pushes targeting the default branch
   push:
     branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
+  pull_request:
+    branches: ["main"]
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
+  # ── 1. Lint all source files ─────────────────────────────────────────────
+  validate:
+    name: Lint HTML · CSS · JS
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install linters
+        run: npm install --no-save htmlhint stylelint eslint@8
+
+      - name: Lint HTML
+        run: |
+          cat > .htmlhintrc << 'EOF'
+          {
+            "doctype-first": true,
+            "tag-pair": true,
+            "attr-lowercase": true,
+            "attr-value-double-quotes": true,
+            "id-unique": true,
+            "src-not-empty": true
+          }
+          EOF
+          npx htmlhint index.html
+          rm .htmlhintrc
+
+      - name: Lint CSS
+        run: |
+          cat > .stylelintrc.json << 'EOF'
+          {
+            "rules": {
+              "color-no-invalid-hex": true,
+              "unit-no-unknown": true,
+              "no-duplicate-selectors": true,
+              "declaration-block-no-duplicate-properties": true
+            }
+          }
+          EOF
+          npx stylelint style.css
+          rm .stylelintrc.json
+
+      - name: Lint JS
+        run: |
+          cat > .eslintrc.json << 'EOF'
+          {
+            "env": { "browser": true, "es2021": true },
+            "parserOptions": { "ecmaVersion": 2021 },
+            "rules": {
+              "no-unused-vars": "warn",
+              "no-undef": "error"
+            }
+          }
+          EOF
+          npx eslint script.js
+          rm .eslintrc.json
+
+  # ── 2. Deploy to GitHub Pages (main branch only, after validate) ─────────
   deploy:
+    name: Deploy to GitHub Pages
+    needs: validate
+    if: github.ref == 'refs/heads/main'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -36,7 +95,6 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
           path: '.'
       - name: Deploy to GitHub Pages
         id: deployment
