@@ -463,6 +463,15 @@ h1, h2, h3 { font-weight: 700; line-height: 1.2; }
 }
 .about-text strong { color: var(--text); }
 
+.about-quote {
+  font-style: italic;
+  color: var(--accent);
+  border-left: 3px solid var(--accent);
+  padding-left: 1rem;
+  margin: 0.5rem 0 1rem;
+  font-size: 0.97rem;
+}
+
 .about-meta {
   display: grid;
   grid-template-columns: 1fr 1fr;
