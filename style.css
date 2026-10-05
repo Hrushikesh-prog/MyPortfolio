@@ -636,6 +636,19 @@ h1, h2, h3 { font-weight: 700; line-height: 1.2; }
   margin-top: 0.2rem;
 }
 
+.tl-client {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  margin-top: 0.2rem;
+}
+
+.tl-project {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0.25rem 0 0.75rem;
+}
+
 .tl-meta {
   display: flex;
   flex-direction: column;

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>V Lakshmi Hrushikesh | Cloud & GenAI Engineer</title>
-  <meta name="description" content="Cloud and GenAI Engineer — MCP servers, agentic workflows, AWS/GCP, Python, FastAPI, React." />
+  <title>V Lakshmi Hrushikesh | AI Software Engineer — Agentic Systems &amp; MCP</title>
+  <meta name="description" content="AI Software Engineer — Agentic Systems &amp; MCP: AI agents, MCP servers, LLM tool calling, AWS &amp; GCP." />
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -47,7 +47,7 @@
         <span class="cursor">|</span>
       </div>
       <p class="hero-summary">
-        Cloud &amp; GenAI Engineer crafting autonomous agent workflows, MCP servers,
+        AI Software Engineer (Agentic Systems &amp; MCP) crafting autonomous agent workflows, MCP servers,
         and high-throughput data pipelines across <span class="tag">AWS</span> &amp; <span class="tag">GCP</span>.
       </p>
       <div class="hero-actions">
@@ -115,6 +115,24 @@
 
         <div class="skill-card reveal">
           <div class="skill-card-header">
+            <i class="fas fa-robot"></i>
+            <h3>Core Competencies</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag hot">AI Agents &amp; Agentic Workflows</span>
+            <span class="skill-tag hot">MCP Server Development (FastMCP)</span>
+            <span class="skill-tag hot">LLM Tool Calling</span>
+            <span class="skill-tag">Failure Handling</span>
+            <span class="skill-tag">Event-Driven Architecture</span>
+            <span class="skill-tag">Agent Integrations via APIs (Airflow REST API, Slack, Linear, Rootly)</span>
+            <span class="skill-tag">Scalable, High-Traffic Architectures</span>
+            <span class="skill-tag">Marketing Data Pipelines &amp; Analytics</span>
+            <span class="skill-tag">Data Structures &amp; Algorithms</span>
+          </div>
+        </div>
+
+        <div class="skill-card reveal">
+          <div class="skill-card-header">
             <i class="fas fa-brain"></i>
             <h3>GenAI &amp; LLMs</h3>
           </div>
@@ -124,6 +142,7 @@
             <span class="skill-tag hot">Claude Harness</span>
             <span class="skill-tag">Tool Calling</span>
             <span class="skill-tag">Agentic Workflows</span>
+            <span class="skill-tag">Anthropic Claude</span>
           </div>
         </div>
 
@@ -136,6 +155,14 @@
             <span class="skill-tag hot">AWS</span>
             <span class="skill-tag hot">GCP</span>
             <span class="skill-tag">Terraform with Claude</span>
+            <span class="skill-tag">BigQuery</span>
+            <span class="skill-tag">Airflow</span>
+            <span class="skill-tag">Cloud Run</span>
+            <span class="skill-tag">Pub/Sub</span>
+            <span class="skill-tag">Cloud Logging</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">Fargate</span>
+            <span class="skill-tag">ECS</span>
           </div>
         </div>
 
@@ -181,6 +208,7 @@
             <span class="skill-tag">Figma</span>
             <span class="skill-tag">Postman</span>
             <span class="skill-tag">Matlab</span>
+            <span class="skill-tag">Looker</span>
           </div>
         </div>
 
@@ -201,6 +229,7 @@
               <div>
                 <h3 class="tl-company">Turing IQ</h3>
                 <p class="tl-role">AI Software Engineer Intern</p>
+                <p class="tl-client">Client: Yahoo · AI Engineer (Agentic Systems)</p>
               </div>
               <div class="tl-meta">
                 <span class="tl-date"><i class="fas fa-calendar-alt"></i> May 2026 – August 2026</span>
@@ -209,11 +238,25 @@
             </div>
             <ul class="tl-bullets">
               <li>Designed and built scalable marketing telemetry ingestion pipelines on GCP, leveraging <strong>BigQuery</strong> and <strong>Airflow</strong>, streaming real-time metrics across TikTok, Facebook, Apple Search, Pinterest, and Reddit APIs while consolidating all of them into a single view for easier analysis.</li>
-              <li>Built an Agent that runs in <strong>Cloud Run</strong> and fires up when a failure event occurs in Airflow DAGs — resolves failures, escalates failed DAG details with possible resolution steps, and raises a ticket only when human intervention is needed.</li>
-              <li>Developed and deployed production-grade custom <strong>MCP servers</strong> enabling autonomous agents to communicate with internal product APIs and telemetry datasets.</li>
+            </ul>
+            <h4 class="tl-project">udg-oncall — AI On-Call Agent for Cloud Composer/Airflow</h4>
+            <ul class="tl-bullets">
+              <li>Designed and shipped <strong>udg-oncall</strong>, a production AI on-call agent for Cloud Composer/Airflow serving <strong>3 production environments</strong> (marketing, audience segmentation, UUP ingestion).</li>
+              <li>Built the event-driven agent pipeline: <strong>Cloud Logging sink → Pub/Sub → Cloud Run agent service → BigQuery incident ledger</strong>, with notifications and actions across Slack, Linear and Rootly.</li>
+              <li>Used <strong>Claude</strong> to classify each DAG/task failure (retryable infrastructure fault vs. code or data issue) and drive the next action through tool calls.</li>
+              <li>Agent automatically restarts retryable infrastructure faults through the <strong>Airflow REST API</strong>; for other failures it files Linear tickets routed to the last committer with a concrete root cause and suggested fix.</li>
+              <li>Recorded every failure, classification and agent action in a <strong>BigQuery incident ledger</strong> for traceability and review of auto-remediation outcomes.</li>
+            </ul>
+            <h4 class="tl-project">AudienceIQ MCP Server — Agent Access to Audience Segmentation &amp; Activation</h4>
+            <ul class="tl-bullets">
+              <li>Core engineer on the AudienceIQ MCP server program (Urgent priority, ~7 engineers); helped break the PRD into epics and contributed to Phase-0 architecture decisions.</li>
+              <li>Owned and built the <strong>AudienceIQ tool group</strong> that exposes Yahoo&#39;s audience segmentation and activation platform to LLM agents — segment lifecycle, sizing/estimation, audience insights, destinations, activation and export.</li>
+              <li>Defined tool inputs, outputs and descriptions so agents can reliably select and chain tools across multi-step audience workflows (create → size → analyze → activate → export).</li>
+              <li>Delivered as part of a unified Python MCP server of <strong>100+ tools</strong> (~13.5K lines of Python, ~10.5K lines of tests), giving agents a standard MCP/API integration layer to the platform.</li>
             </ul>
             <div class="tl-tech">
               <span>GCP</span><span>BigQuery</span><span>Airflow</span><span>Cloud Run</span><span>MCP</span><span>Python</span>
+              <span>Claude</span><span>Cloud Composer</span><span>Pub/Sub</span><span>Cloud Logging</span><span>Slack</span><span>Linear</span><span>Rootly</span>
             </div>
           </div>
         </div>
@@ -447,7 +490,7 @@
             <i class="fab fa-github"></i>
             <div>
               <p class="c-label">GitHub</p>
-              <p class="c-value">Hrushi-d</p>
+              <p class="c-value">Hrushikesh-prog</p>
             </div>
           </a>
         </div>
